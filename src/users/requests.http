@@ -7,6 +7,15 @@ content-type: application/json
   "password": "arandomstring"
 }
 
+### Sign the user in
+POST http://localhost:3000/auth/signin
+content-type: application/json
+
+{
+  "email": "cuong@hanligu.com",
+  "password": "arandomstring"
+}
+
 ### Find a particular user with a given ID
 GET http://localhost:3000/auth/1
 
