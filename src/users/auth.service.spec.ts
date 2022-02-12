@@ -53,24 +53,29 @@ describe('AuthService', () => {
   it('throws an error if user signs up with email that is in use', async () => {
     await service.signup('cuong@hanligu.com', '123456');
 
-    // https://stackoverflow.com/a/56198250
-    await expect(service.signup('cuong@hanligu.com', '654321')).rejects.toEqual(
-      new BadRequestException('email in use'),
-    );
+    try {
+      await service.signup('cuong@hanligu.com', '654321');
+    } catch (error) {
+      expect(error).toEqual(new BadRequestException('email in use'));
+    }
   });
 
   it('throws if signin is called with an unused email', async () => {
-    await expect(service.signin('cuong@hanligu.com', '123456')).rejects.toEqual(
-      new NotFoundException('user not found'),
-    );
+    try {
+      await service.signin('cuong@hanligu.com', '123456');
+    } catch (error) {
+      expect(error).toEqual(new NotFoundException('user not found'));
+    }
   });
 
   it('throws if an invalid password is provided', async () => {
     await service.signup('cuong@hanligu.com', '123456');
 
-    await expect(service.signin('cuong@hanligu.com', '654321')).rejects.toEqual(
-      new BadRequestException('bad password'),
-    );
+    try {
+      await service.signin('cuong@hanligu.com', '654321');
+    } catch (error) {
+      expect(error).toEqual(new BadRequestException('bad password'));
+    }
   });
 
   it('returns a user if correct password is provided', async () => {

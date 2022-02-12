@@ -66,9 +66,11 @@ describe('UsersController', () => {
   it('findUser throws an error if user with given id is not found', async () => {
     fakeUsersService.findOne = () => null;
 
-    await expect(controller.findUser('1')).rejects.toEqual(
-      new NotFoundException('user not found'),
-    );
+    try {
+      await controller.findUser('1');
+    } catch (error) {
+      expect(error).toEqual(new NotFoundException('user not found'));
+    }
   });
 
   it('signin updates session object and returns user', async () => {
