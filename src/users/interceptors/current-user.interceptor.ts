@@ -4,8 +4,6 @@ import {
   CallHandler,
   Injectable,
 } from '@nestjs/common';
-import { handleRetry } from '@nestjs/typeorm';
-import { Observable } from 'rxjs';
 import { UsersService } from '../users.service';
 
 @Injectable()

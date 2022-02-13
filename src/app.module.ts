@@ -45,9 +45,10 @@ const cookieSession = require('cookie-session');
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
-    // Register the cookieSession middleware on every route.
     // Use globally scoped middlewares in app module
     // to make use of those middlewares in both development and test environment
+
+    // Register the cookieSession middleware on every route.
     consumer
       .apply(
         cookieSession({

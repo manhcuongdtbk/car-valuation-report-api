@@ -12,6 +12,9 @@ export class User {
   @Column()
   password: string;
 
+  @Column({ default: false })
+  admin: boolean;
+
   // First argument solves the circular reference issue.
   // We can't refer to the Report entity if this User entity is loaded first.
   // The first argument means that some point in time after loading,
